@@ -7,8 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "zhayi@umich.edu",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package utilizes the Bayesian prior and posterior preditive 
-checking method to provide the assessment on replicaiton success. 
+Description: This package utilizes the Bayesian prior and posterior preditive checking method to provide the assessment on replicaiton success. 
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
