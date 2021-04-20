@@ -112,18 +112,7 @@ posterior_prp<-function(beta,se,L=1000,r_vec = c(0,1e-5, 6e-3, 0.024),test="Q",p
       count = count + (q>q_orig)
     }
     ####test statistics 3 egger regression with heterogeneous param
-    else if (test == "egger-hetero"){
-      # # y = betanewjs / sqrt(sd2 + phi2)
-      # # x = 1 / sqrt(sd2 + phi2)
-      # # a = abs(summary(lm(y ~ x))$coefficients[1,1])
-      # egger_sim = abs(sum((betanewjs-barbeta)/sqrt(phi2+sd2)))
-      # egger_orig = abs(sum((beta-barbeta)/sqrt(phi2+sd2)))
-      #
-      # # y_orig = beta / sqrt(sd2 + phi2)
-      # # x_orig = 1 / sqrt(sd2 + phi2)
-      # # com = abs(summary(lm(y_orig~x_orig))$coefficients[1,1])
-      # dist_list2= c(dist_list2,egger_sim-egger_orig)
-      # count = count + (egger_sim>egger_orig)
+    else if (test == "egger"){
       y = betanewjs/sqrt(sd2+phi2)
       x = 1/sqrt(sd2+phi2)
 
