@@ -2,4 +2,5 @@
 
 export(posterior_prp)
 export(prior_prp)
+export(prob_to_r)
 importFrom(mvtnorm,dmvnorm)

@@ -1,0 +1,6 @@
+cardi_severe<-read.table("cardiovascular_severe.dat",header=T)
+cardi_mortality<-read.table("cardiovascular.dat",header=T)
+rpp<-read.table("rpp_73.dat",header = T)
+usethis::use_data(cardi_severe,overwrite = T)
+usethis::use_data(cardi_mortality,overwrite = T)
+usethis::use_data(rpp,overwrite = T)
