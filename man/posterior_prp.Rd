@@ -8,7 +8,7 @@ posterior_prp(
   beta,
   se,
   L = 1000,
-  r_vec = c(0, 1e-05, 0.006, 0.024),
+  r_vec = c(0, 8e-04, 0.006, 0.024),
   test = "Q",
   print_test_dist = FALSE
 )

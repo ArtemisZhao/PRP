@@ -24,7 +24,7 @@
 #'
 #' @export
 #'
-prior_prp<-function(beta,se,r_vec = c(0, 1e-5, 6e-3, 0.024),test="two_sided",report_CI=F){
+prior_prp<-function(beta,se,r_vec = c(0, 8e-4, 6e-3, 0.024),test="two_sided",report_CI=F){
   reslist<-list()
   beta_o<-beta[1]
   beta_r<-beta[2]

@@ -25,7 +25,7 @@
 #'
 #' @export
 #'
-posterior_prp<-function(beta,se,L=1000,r_vec = c(0,1e-5, 6e-3, 0.024),test="Q",print_test_dist=FALSE){
+posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test="Q",print_test_dist=FALSE){
   res<-list()
   sd2=se^2
   m<-length(beta)  ###number of replicates

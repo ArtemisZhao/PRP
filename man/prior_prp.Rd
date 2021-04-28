@@ -7,7 +7,7 @@
 prior_prp(
   beta,
   se,
-  r_vec = c(0, 1e-05, 0.006, 0.024),
+  r_vec = c(0, 8e-04, 0.006, 0.024),
   test = "two_sided",
   report_CI = F
 )
