@@ -13,7 +13,7 @@ prob_to_r(p)
 The corresponding heterogeneity parameter value.
 }
 \description{
-This function transforms the probability of simulated \eqn {\beta_j} having the same
-sign with the underlying true effect \eqn{ \bar\beta } to the corresponding heterogeneity
+This function transforms the probability of simulated beta_j having the same
+sign with the underlying true effect barbeta to the corresponding heterogeneity
 r parameter value.
 }

@@ -1,7 +1,7 @@
 #' Probability and r parameter value 1-1 transformation
 #'
-#' This function transforms the probability of simulated \eqn {\beta_j} having the same
-#' sign with the underlying true effect \eqn{ \bar\beta } to the corresponding heterogeneity
+#' This function transforms the probability of simulated beta_j having the same
+#' sign with the underlying true effect barbeta to the corresponding heterogeneity
 #' r parameter value.
 #'
 #' @param p A value, the required probability of sign consistency.
