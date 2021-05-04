@@ -9,7 +9,7 @@ posterior_prp(
   se,
   L = 1000,
   r_vec = c(0, 8e-04, 0.006, 0.024),
-  test = "Q",
+  test,
   print_test_dist = FALSE
 )
 }
@@ -25,8 +25,7 @@ study and thereplication study.}
 \item{r_vec}{A vector, defining the prior reproducible model. Each r value
 corresponds to a probability.}
 
-\item{test}{A string, determining which test statistics to use. If not sepecified,
-the default Cochran's Q test will be used. (need to change to function later)}
+\item{test}{A function designed to calculate the test quantity.}
 
 \item{print_test_dist}{A boolean, determining whether the simulated test statistics
 value difference will be plot as histogram or not.}

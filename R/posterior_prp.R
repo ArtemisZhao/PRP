@@ -7,8 +7,7 @@
 #' @param L A value, determining the times of repeating simulation.
 #' @param r_vec A vector, defining the prior reproducible model. Each r value
 #' corresponds to a probability.
-#' @param test A string, determining which test statistics to use. If not sepecified,
-#' the default Cochran's Q test will be used. (need to change to function later)
+#' @param test A function designed to calculate the test quantity.
 #' @param print_test_dist A boolean, determining whether the simulated test statistics
 #' value difference will be plot as histogram or not.
 #'
@@ -25,7 +24,7 @@
 #'
 #' @export
 #'
-posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test="Q",print_test_dist=FALSE){
+posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test,print_test_dist=FALSE){
   res<-list()
   sd2=se^2
   m<-length(beta)  ###number of replicates
@@ -100,82 +99,11 @@ posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test="Q",p
       betanewjs<-c(betanewjs,betanewj)
     }
 
-
-    ###test 4: Cochran's Q test
-    if (test == "Q"){
-      q = sum((betanewjs - barbeta)^2 / (sd2 + phi2))
-      #q = sum(abs(betanewjs - mean(betanewjs)) / (sd2 + phi2))
-      #q_orig = sum(abs(beta - mean(beta)) / (sd2 + phi2))
-      q_orig = sum((beta - barbeta)^2 / (sd2 + phi2))
-      dist_list<- c(dist_list,q)
-      dist_list2<-c(dist_list2,q-q_orig)
-      count = count + (q>q_orig)
-    }
-    ####test statistics 3 egger regression with heterogeneous param
-    else if (test == "egger"){
-      y = betanewjs/sqrt(sd2+phi2)
-      x = 1/sqrt(sd2+phi2)
-
-      Sxx = sum( (x-mean(x))*x)
-      Sxy = sum( (x-mean(x))*y)
-      Syy = sum( (y-mean(y))*y)
-
-      b1 = Sxy/Sxx
-      b0 = mean(y)- b1*mean(x)
-
-      s2 = (Syy - b1^2*Sxx)/m
-      vb0 = s2*(1/m+mean(x)^2/Sxx)
-
-      egger_sim = b0^2/vb0
-
-      #egger_sim = abs(b0)
-      y = beta/sqrt(sd2+phi2)
-      x = 1/sqrt(sd2+phi2)
-      Sxy = sum( (x-mean(x))*y)
-      Syy = sum( (y-mean(y))*y)
-
-      b1 = Sxy/Sxx
-      b0 = mean(y)- b1*mean(x)
-      s2 = (Syy - b1^2*Sxx)/m
-      vb0 = s2*(1/m+mean(x)^2/Sxx)
-
-      egger_orig = b0^2/vb0
-      #egger_orig = abs(b0)
-      dist_list2= c(dist_list2, (egger_sim - egger_orig))
-      count = count + ( egger_sim > egger_orig )
-    }
-    ###test statistics 2 skewness:
-    else if (test=="skew"){
-      y = betanewjs / sqrt(sd2 + phi2)
-      x = 1 / sqrt(sd2 + phi2)
-      muhat = summary(lm(y ~ x))$coefficients[2,1]
-      dis = (betanewjs - muhat)/sqrt(sd2+phi2)
-      skew<-abs(skewness(dis))
-      dist_list = c(dist_list,skew)
-
-      y_orig = beta / sqrt(sd2 + phi2)
-      x_orig = 1 / sqrt(sd2 + phi2)
-      muhat = summary(lm(y_orig ~ x_orig))$coefficients[2,1]
-      dis = (beta - muhat)/sqrt(sd2+phi2)
-      com = abs(skewness(dis))
-      dist_list2= c(dist_list2,skew-com)
-      count=count+(skew>com)
-    }
-    else if (test == "diff")
-    { ###test statistics 1 naive:
-      ###max min difference
-      dist<-max(betanewjs)-min(betanewjs)
-      dist_list<-c(dist_list,dist)
-      com = max(beta)-min(beta)
-      dist_list2= c(dist_list2,dist-com)
-      count = count+(dist>com)
-    }
-    else{
-      dist = test(betanewjs) #### needs modification!
-      com = test(beta)
-      dist_list2<-c(dist_list2,dist-com)
-      count = count+(dist>com)
-    }
+      test_sim<-test(betanewjs,sd2,phi2,m)
+      test_orig<-test(beta,sd2,phi2,m)
+      dist_list = c(dist_list, test_sim)
+      dist_list2= c(dist_list2, (test_sim - test_orig))
+      count = count + ( test_sim > test_orig )
   }
   if (print_test_dist){
     #print(length(dist_list))
