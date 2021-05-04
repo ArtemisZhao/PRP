@@ -7,7 +7,7 @@
 #'
 #' @return The egger test statistic value
 #'
-#'  @export
+#' @export
 #'
 egger <- function(beta,se2,phi2,m){
   y = beta/sqrt(se2+phi2)

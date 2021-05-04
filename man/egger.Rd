@@ -17,8 +17,6 @@ egger(beta, se2, phi2, m)
 }
 \value{
 The egger test statistic value
-
-@export
 }
 \description{
 Egger test statistics
