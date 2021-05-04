@@ -6,6 +6,7 @@
 #' @param m The number of replications
 #'
 #' @return The Q test statistic value
+#'
 #' @export
 #'
 Q<-function(beta,se2,phi2,m){
