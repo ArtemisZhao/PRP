@@ -99,8 +99,8 @@ posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test,print
       betanewjs<-c(betanewjs,betanewj)
     }
 
-      test_sim<-test(betanewjs,sd2,phi2,m)
-      test_orig<-test(beta,sd2,phi2,m)
+      test_sim<-test(betanewjs,sd2,barbeta,phi2,m)
+      test_orig<-test(beta,sd2,barbeta,phi2,m)
       dist_list = c(dist_list, test_sim)
       dist_list2= c(dist_list2, (test_sim - test_orig))
       count = count + ( test_sim > test_orig )

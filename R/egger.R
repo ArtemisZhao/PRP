@@ -2,6 +2,7 @@
 #'
 #' @param beta The original or the simulated estimated effects.
 #' @param se2 The squared standard errors of the estimated effects.
+#' @param barbeta The estimated true underlying effect.
 #' @param phi2 The value of the hyperparameter phi.
 #' @param m The number of replications
 #'
@@ -9,7 +10,7 @@
 #'
 #' @export
 #'
-egger <- function(beta,se2,phi2,m){
+egger <- function(beta,se2,barbeta,phi2,m){
   y = beta/sqrt(se2+phi2)
   x = 1/sqrt(se2+phi2)
 

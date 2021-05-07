@@ -4,12 +4,14 @@
 \alias{egger}
 \title{Egger test statistics}
 \usage{
-egger(beta, se2, phi2, m)
+egger(beta, se2, barbeta, phi2, m)
 }
 \arguments{
 \item{beta}{The original or the simulated estimated effects.}
 
 \item{se2}{The squared standard errors of the estimated effects.}
+
+\item{barbeta}{The estimated true underlying effect.}
 
 \item{phi2}{The value of the hyperparameter phi.}
 
