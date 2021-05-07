@@ -5,12 +5,12 @@
 #'
 #'@docType data
 #'
-#'@usage data("rpp")
+#'@usage data("RPP_filtered")
 #'
 #'@keywords datasets
 #'
 #'
 #'@examples
-#'data("rpp")
+#'data("RPP_filtered")
 
-"rpp"
+"RPP_filtered"
