@@ -7,7 +7,7 @@
 #' @param L A value, determining the times of repeating simulation.
 #' @param r_vec A vector, defining the prior reproducible model. Each r value
 #' corresponds to a probability.
-#' @param test A function designed to calculate the test quantity.
+#' @param test A function designed to calculate the test quantity, the default is the Q test statistics.
 #' @param print_test_dist A boolean, determining whether the simulated test statistics
 #' value difference will be plot as histogram or not.
 #'
@@ -24,7 +24,7 @@
 #'
 #' @export
 #'
-posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test,print_test_dist=FALSE){
+posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test=Q,print_test_dist=FALSE){
   res<-list()
   sd2=se^2
   m<-length(beta)  ###number of replicates
