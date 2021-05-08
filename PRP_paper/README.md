@@ -12,8 +12,8 @@ This will start the process of
 data generation -> data analysis -> summarizing results. 
 
 
-In all cases, the intermediate results (simulated data) are saved in the generated data directory. 
-The final summary of results are saved in the generated results directory. 
+In all cases, the intermediate results (simulated data) are saved in the generated sim_data directory. 
+The final summary of results are saved in the generated output directory. 
 
 To restore the original directory structure before analysis, run
 
