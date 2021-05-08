@@ -33,6 +33,7 @@ data("severity")
 
 ## Contributors
 Xiaoquan Wen (Umich)
+
 Yi Zhao (Umich)
 
 ## References and Citations
