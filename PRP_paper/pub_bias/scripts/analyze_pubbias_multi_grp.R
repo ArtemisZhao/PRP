@@ -25,10 +25,10 @@ pval_Q = c()
 
 for (i in 1:p){
 
-	pval1 = posterior_prp(beta = beta[i,], se = se[i,], test=egger)$pval
+	pval1 = posterior_prp(beta = beta[i,], se = se[i,], test=egger)$pvalue
 	pval_egger = c(pval_egger,pval1)
 
-	pval2 = posterior_prp(beta = beta[i,], se = se[i,], test=Q)$pval
+	pval2 = posterior_prp(beta = beta[i,], se = se[i,], test=Q)$pvalue
 	pval_Q = c(pval_Q, pval2)
 
 }
