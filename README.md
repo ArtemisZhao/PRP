@@ -39,6 +39,8 @@ The following R packages are required to install and run the analysis code:
 + ```devtools```
 + ```mvtnorm```
 + ```metafor```
++ ```dplyr```
++ ```ggplot2```
 
 ## Docker image
 
