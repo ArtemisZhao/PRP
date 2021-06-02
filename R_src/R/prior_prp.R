@@ -11,7 +11,7 @@
 #' corresponds to a probability.
 #' @param test A string, determining which test statistics to use. If not sepecified,
 #' the default two-sided one will be used.
-#' @param report_CI A boolean, denoting whether the 95% confidence interval for
+#' @param report_PI A boolean, denoting whether the 95% predictive interval for
 #' the estimates be reported or not. This is option is only valid for two-sided
 #' test statistics.
 #'
@@ -20,11 +20,11 @@
 #' \item{grid}{ The grid points for the hyperparameters.}
 #' \item{test_statistics}{ The test statistics used in calculating the replication p-value.}
 #' \item{pvalue}{ The resulting prior predictive replicaiton p-value.}
-#' \item{CI}{ The 95% confidence interval if required.}
+#' \item{PI}{The 95% predictive interval if required.}
 #'
 #' @export
 #'
-prior_prp<-function(beta,se,r_vec = c(0, 8e-4, 6e-3, 0.024),test="two_sided",report_CI=F){
+prior_prp<-function(beta,se,r_vec = c(0, 8e-4, 6e-3, 0.024),test="two_sided",report_PI=F){
   reslist<-list()
   beta_o<-beta[1]
   beta_r<-beta[2]
@@ -81,14 +81,14 @@ prior_prp<-function(beta,se,r_vec = c(0, 8e-4, 6e-3, 0.024),test="two_sided",rep
   if (test=="two_sided"){
     res = 2*min(pval_wt,1-pval_wt)
     reslist[["pvalue"]]=res
-    if (report_CI){
+    if (report_PI){
       mixture_CDF_right<-Vectorize(function(t) wts%*%pnorm(t,mean=mean,sd=sqrt(var))-0.975)
       root_right<-uniroot(mixture_CDF_right,c(mean(mean),10))$root
 
       mixture_CDF_left<-Vectorize(function(t) wts%*%pnorm(t,mean=mean,sd=sqrt(var))-0.025)
       root_left<-uniroot(mixture_CDF_left,c(-10,mean(mean)))$root
 
-      reslist[["CI"]]=c(CI_left=root_left,CI_right=root_right)
+      reslist[["predictive_interval"]]=c(PI_left_95p=root_left,PI_right_95p=root_right)
     }
   }
   return(reslist)

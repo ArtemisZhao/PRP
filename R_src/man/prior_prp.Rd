@@ -9,7 +9,7 @@ prior_prp(
   se,
   r_vec = c(0, 8e-04, 0.006, 0.024),
   test = "two_sided",
-  report_CI = F
+  report_PI = F
 )
 }
 \arguments{
@@ -25,7 +25,7 @@ corresponds to a probability.}
 \item{test}{A string, determining which test statistics to use. If not sepecified,
 the default two-sided one will be used.}
 
-\item{report_CI}{A boolean, denoting whether the 95\% confidence interval for
+\item{report_PI}{A boolean, denoting whether the 95\% predictive interval for
 the estimates be reported or not. This is option is only valid for two-sided
 test statistics.}
 }
@@ -34,7 +34,7 @@ A list with the following components:
 \item{grid}{ The grid points for the hyperparameters.}
 \item{test_statistics}{ The test statistics used in calculating the replication p-value.}
 \item{pvalue}{ The resulting prior predictive replicaiton p-value.}
-\item{CI}{ The 95\% confidence interval if required.}
+\item{PI}{The 95\% predictive interval if required.}
 }
 \description{
 Assessing the prior predictive distribution and calculating the replication
