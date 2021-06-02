@@ -13,10 +13,11 @@ Source code for R package `PRP` is included in `R_src`. To install, run
 devtools::install_github("ArtemisZhao/PRP/R_src")
 ```
 
-## Simulation
-The necessary code and data for simulation analysis are included in the folder __PRP_paper__. They should enable readers to fully reproduce the simulation results.
+## Data and code
+The code and data for simulation and real data analysis are included in the folder __PRP_paper__. They should enable readers to fully reproduce the simulation results.
 
-## Real data
+To reproduce simulation and analysis results, clone the repo and run ```make``` in each sub-directory. The simulation data will be re-generated. 
+
 The data for the real application described in the paper are included in the R package.
 
 ```{r}
@@ -31,10 +32,24 @@ data("mortality")
 data("severity")
 ```
 
-## Contributors
-Xiaoquan Wen (Umich)
+### R library dependency
 
-Yi Zhao (Umich)
+The following R packages are required to install and run the analysis code:
+
++ ```devtools```
++ ```mvtnorm```
++ ```metafor```
+
+## Docker image
+
+A docker image with pre-configured Linux running environment and pre-installed R libraries is availabel for download from docker hub.
+
+
+## Contributors
+
++ Yi Zhao (zhayi at umich dot edu)
++ Xiaoquan Wen (xwen at umich dot edu)
 
 ## References and Citations
 
++ Zhao, Y. and Wen, X. Statistical Assessment of Replicability via Bayesian Model Criticism. [arXiv:2105.03993](https://arxiv.org/abs/2105.03993) 
