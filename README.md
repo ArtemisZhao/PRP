@@ -44,7 +44,7 @@ The following R packages are required to install and run the analysis code:
 
 ## Docker image
 
-A docker image with pre-configured Linux running environment and pre-installed R libraries is availabel for download from docker hub.
+A docker image with pre-configured Linux running environment and pre-installed R libraries is availabel for download from [docker hub](https://hub.docker.com/r/xqwen/prp).
 
 
 ## Contributors
