@@ -1,0 +1,24 @@
+COVID-19 Mortality Data
+
+Cochran's Q-test
+[1] 0.2207679
+Posterior PRP: Q-quantity
+[1] 0.2705
+
+Egger regression for detecting publication bias
+[1] 0.4297978
+Posterio PRP: Egger-quantitry
+[1] 0.5825
+
+
+COVID-19 Severity Data
+
+Cochran's Q-test
+[1] 0.0008122045
+Posterior PRP: Q-quantity
+[1] 0.007
+
+Egger regression for detecting publication bias
+[1] 0.009947625
+Posterio PRP: Egger-quantitry
+[1] 0.24
