@@ -34,7 +34,7 @@ A list with the following components:
 \item{grid}{ The grid points for the hyperparameters.}
 \item{test_statistics}{ The test statistics used in calculating the replication p-value.}
 \item{pvalue}{ The resulting prior predictive replicaiton p-value.}
-\item{PI}{The 95\% predictive interval if required.}
+\item{predictive_interval}{The 95\% predictive interval if required.}
 }
 \description{
 Assessing the prior predictive distribution and calculating the replication
