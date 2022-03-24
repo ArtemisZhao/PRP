@@ -11,7 +11,8 @@ An object of class \code{data.frame} with 6 rows and 3 columns.
 data("mortality")
 }
 \description{
-Cardiovascular disease impact on the mortality of COVID-19
+This is a dataset containing several effect estimates and their standard errors
+for the impact of cardivascular disease on the mortality of COVID-19 in the literature.
 }
 \examples{
 data("mortality")

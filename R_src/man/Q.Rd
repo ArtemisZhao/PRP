@@ -21,5 +21,6 @@ Q(beta, se2, barbeta, phi2, m)
 The Q test statistic value
 }
 \description{
-Q test statistics
+This function calculates the Q test quantity.
 }
+\keyword{internal}

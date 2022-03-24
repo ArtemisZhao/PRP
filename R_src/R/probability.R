@@ -1,4 +1,4 @@
-#' Probability and r parameter value 1-1 transformation
+#' Sign consistency probability and the value for r parameter 1-1 transformation
 #'
 #' This function transforms the probability of simulated beta_j having the same
 #' sign with the underlying true effect barbeta to the corresponding heterogeneity
@@ -9,9 +9,9 @@
 #' @return
 #' The corresponding heterogeneity parameter value.
 #'
-#' @export
 #'
 prob_to_r<-function(p){
+
   target<-function(r){
     c<- sqrt(2/pi)
     t<-round(integrate(function(t){
@@ -21,7 +21,6 @@ prob_to_r<-function(p){
     return(res-p)
   }
 
-  #mixture_CDF_left<-Vectorize(function(t) wts%*%pnorm(t,mean=mean,sd=sqrt(var))-0.025)
   root<-uniroot(target,c(0,0.1),tol = .Machine$double.eps^0.2)$root
   return(root)
 }

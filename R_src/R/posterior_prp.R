@@ -3,17 +3,18 @@
 #' @param beta A vector, containing the estimates in the original study and the
 #' replication study.
 #' @param se A vector, containing the standard errors of the estimates in the original
-#' study and thereplication study.
+#' study and the replication study.
 #' @param L A value, determining the times of repeating simulation.
 #' @param r_vec A vector, defining the prior reproducible model. Each r value
-#' corresponds to a probability.
-#' @param test A function designed to calculate the test quantity, the default is the Q test statistics.
+#' corresponds to a probability of sign consistency.
+#' @param test A function designed to calculate the test quantity, the default
+#' one is the Cochran's Q test statistics.
 #' @param print_test_dist A boolean, determining whether the simulated test statistics
-#' value difference will be plot as histogram or not.
+#' value difference will be plot as a histogram or not. Default is False.
 #'
 #' @return
 #' A list with the following components:
-#' \item{grid}{ The grid points for the hyperparameters.}
+#' \item{grid}{ Detailed grid values for the hyperparameters.}
 #' \item{test_statistics}{ The test statistics used in calculating the replication p-value.}
 #' \item{n_sim}{ The L value.}
 #' \item{test_stats_dif}{ The difference between the simulated test statistics
@@ -21,24 +22,29 @@
 #' \item{pvalue}{ The resulting posterior predictive replicaiton p-value.}
 #'
 #' @importFrom mvtnorm dmvnorm
-#'
+#' @importFrom graphics hist
+#' @importFrom stats dnorm integrate pnorm qchisq rnorm uniroot
 #' @export
 #'
+#' @examples
+#' data("mortality")
+#' res = posterior_prp(beta = mortality$beta, se = mortality$se, test=Q)
+#' names(res)
+#' print(res$pvalue)
+#'
 posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test=Q,print_test_dist=FALSE){
-  res<-list()
-  sd2=se^2
-  m<-length(beta)  ###number of replicates
+  res <- list()
+  sd2 = se^2
+  m <- length(beta)  ## number of replicates
 
   #chis1<-qchisq(c(0.25,0.5,0.75),df=1)
-  ## test1 normal
-  #eta2_vec = c(mean(beta),min(beta),max(beta))^2
 
-  ## test 2 weighted average
+  ## test 1 weighted average
   wts = 1/sd2
   center = sum(wts*beta)/sum(wts)
   eta2_vec = c(center, center-sqrt(1/sum(wts)),center+sqrt(1/sum(wts)))^2
 
-  ## test 3
+  ## test 2
   #eta2_vec = c(center)^2
   #res[["eta_grid"]] = eta2_vec
   rv = r_vec
@@ -110,10 +116,11 @@ posterior_prp<-function(beta,se,L=1000,r_vec = c(0,8e-4, 6e-3, 0.024),test=Q,pri
     hist(dist_list2)
   }
   res[["test_statistics"]]=test
+
   res[["n_sim"]]=L
-  ###
+
   res[["test_stats_dif"]]=dist_list2
-  ###
+
   res[["pvalue"]]=count/L
 
   return( res)

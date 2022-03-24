@@ -1,16 +1,21 @@
 Package: PRP
-Title: Bayesian prior and posterior predictive replicaiton assessment
-Version: 0.0.0.9000
+Title: Bayesian Prior and Posterior Predictive Replication Assessment
+Version: 0.1.1
 Authors@R: 
-    person(given = "Yi",
-           family = "Zhao",
-           role = c("aut", "cre"),
-           email = "zhayi@umich.edu",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package utilizes the Bayesian prior and posterior preditive checking method to provide the assessment on replicaiton success. 
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    c(person(given="Yi",family="Zhao",role=c("aut", "cre"),email="zhayi@umich.edu"),
+    person(given="Xiaoquan",family="Wen",role=c("aut"),email="xwen@umich.edu"))
+Author: Yi Zhao [aut, cre], Xiaoquan Wen [aut]
+Maintainer: Yi Zhao <zhayi@umich.edu>
+Description: Utilize the Bayesian prior and posterior predictive checking
+   approach to provide a statistical assessment of replication success 
+   and failure. The package is based on the methods proposed in 
+   Zhao,Y., Wen X.(2021) <arXiv:2105.03993>. 
+License: GPL-2
 Encoding: UTF-8
+Imports:
+  mvtnorm,
+  stats,
+  graphics
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1

@@ -21,5 +21,6 @@ egger(beta, se2, barbeta, phi2, m)
 The egger test statistic value
 }
 \description{
-Egger test statistics
+This function provides the calculation for Egger test quantities.
 }
+\keyword{internal}

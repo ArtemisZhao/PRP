@@ -1,5 +1,7 @@
 #' Egger test statistics
 #'
+#' This function provides the calculation for Egger test quantities.
+#'
 #' @param beta The original or the simulated estimated effects.
 #' @param se2 The squared standard errors of the estimated effects.
 #' @param barbeta The estimated true underlying effect.
@@ -9,6 +11,7 @@
 #' @return The egger test statistic value
 #'
 #' @export
+#' @keywords internal
 #'
 egger <- function(beta,se2,barbeta,phi2,m){
   y = beta/sqrt(se2+phi2)

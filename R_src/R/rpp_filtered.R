@@ -1,6 +1,6 @@
 #' Filtered RPP data
 #'
-#'
+#' This contains the RP:P data from the Open Science Collaboration project after filtering.
 #'
 #'
 #'@docType data

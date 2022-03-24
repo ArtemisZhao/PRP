@@ -11,7 +11,7 @@ An object of class \code{data.frame} with 73 rows and 5 columns.
 data("RPP_filtered")
 }
 \description{
-Filtered RPP data
+This contains the RP:P data from the Open Science Collaboration project after filtering.
 }
 \examples{
 data("RPP_filtered")

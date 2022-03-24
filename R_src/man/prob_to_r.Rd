@@ -2,7 +2,7 @@
 % Please edit documentation in R/probability.R
 \name{prob_to_r}
 \alias{prob_to_r}
-\title{Probability and r parameter value 1-1 transformation}
+\title{Sign consistency probability and the value for r parameter 1-1 transformation}
 \usage{
 prob_to_r(p)
 }

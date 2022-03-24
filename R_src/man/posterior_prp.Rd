@@ -18,21 +18,22 @@ posterior_prp(
 replication study.}
 
 \item{se}{A vector, containing the standard errors of the estimates in the original
-study and thereplication study.}
+study and the replication study.}
 
 \item{L}{A value, determining the times of repeating simulation.}
 
 \item{r_vec}{A vector, defining the prior reproducible model. Each r value
-corresponds to a probability.}
+corresponds to a probability of sign consistency.}
 
-\item{test}{A function designed to calculate the test quantity, the default is the Q test statistics.}
+\item{test}{A function designed to calculate the test quantity, the default
+one is the Cochran's Q test statistics.}
 
 \item{print_test_dist}{A boolean, determining whether the simulated test statistics
-value difference will be plot as histogram or not.}
+value difference will be plot as a histogram or not. Default is False.}
 }
 \value{
 A list with the following components:
-\item{grid}{ The grid points for the hyperparameters.}
+\item{grid}{ Detailed grid values for the hyperparameters.}
 \item{test_statistics}{ The test statistics used in calculating the replication p-value.}
 \item{n_sim}{ The L value.}
 \item{test_stats_dif}{ The difference between the simulated test statistics
@@ -41,4 +42,11 @@ quantity and the original value.}
 }
 \description{
 Posterior Predictive Replication p-value Calculation
+}
+\examples{
+data("mortality")
+res = posterior_prp(beta = mortality$beta, se = mortality$se, test=Q)
+names(res)
+print(res$pvalue)
+
 }

@@ -9,29 +9,29 @@ prior_prp(
   se,
   r_vec = c(0, 8e-04, 0.006, 0.024),
   test = "two_sided",
-  report_PI = F
+  report_PI = FALSE
 )
 }
 \arguments{
-\item{beta}{A vector, containing the estimates in the original study and the
+\item{beta}{A 2-D vector, containing the estimates in the original study and the
 replication study.}
 
-\item{se}{A vector, containing the standard errors of the estimates in the original
-study and thereplication study.}
+\item{se}{A 2-D vector, containing the standard errors of the estimates in the original
+study and the replication study.}
 
 \item{r_vec}{A vector, defining the prior reproducible model. Each r value
-corresponds to a probability.}
+corresponds to a probability of sign consistency.}
 
-\item{test}{A string, determining which test statistics to use. If not sepecified,
+\item{test}{A string, determining which test statistics to utilize. If not specified,
 the default two-sided one will be used.}
 
 \item{report_PI}{A boolean, denoting whether the 95\% predictive interval for
-the estimates be reported or not. This is option is only valid for two-sided
-test statistics.}
+the estimates be reported or not. This option is only valid for two-sided
+test statistics. The default is FALSE.}
 }
 \value{
 A list with the following components:
-\item{grid}{ The grid points for the hyperparameters.}
+\item{grid}{ The detailed grid values for the hyperparameters.}
 \item{test_statistics}{ The test statistics used in calculating the replication p-value.}
 \item{pvalue}{ The resulting prior predictive replicaiton p-value.}
 \item{predictive_interval}{The 95\% predictive interval if required.}
@@ -39,4 +39,11 @@ A list with the following components:
 \description{
 Assessing the prior predictive distribution and calculating the replication
 p-value based on it.
+}
+\examples{
+data("RPP_filtered")
+attach(RPP_filtered)
+rpp_pval<-sapply(1:nrow(RPP_filtered),function(x)
+  prior_prp(beta=c(beta_orig[x], beta_rep[x]),se=c(se_orig[x],  se_rep[x]))$pvalue)
+
 }
