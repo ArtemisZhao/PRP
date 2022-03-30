@@ -27,7 +27,7 @@ d = read.table(filename)
 attach(d)
 N = dim(d)[1]
 
-pvec = sapply(1:N, function(x) PRP_MCMC(beta=c(V2[x], V4[x]), se=c(V3[x], V5[x]), k=root_vec))
+pvec = sapply(1:N, function(x) PRP_MCMC(beta=c(V2[x], V4[x]), se=c(V3[x], V5[x]), k=c(0)))
 
 pvec_ref = sapply(1:N,function(x) prior_prp(beta=c(V2[x], V4[x]), se=c(V3[x], V5[x]))$pval)
 

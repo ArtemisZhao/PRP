@@ -1,7 +1,7 @@
 library(Rcpp)
 library(RcppArmadillo)
 library(RcppGSL)
-Rcpp::sourceCpp("../PRP_MCMC.cpp")
+Rcpp::sourceCpp("../PRP_MCMC_with_PI.cpp")
 
 t= seq(0.001,0.05,0.001)
 root_vec<-c(0)
@@ -25,8 +25,8 @@ rpp_pval_ref = sapply(1:nrow(RPP_filtered),function(x)
            se=c(se_orig[x], se_rep[x]))$pval)
   
 rpp_pval<-sapply(1:nrow(RPP_filtered),function(x)
-  PRP_MCMC(beta=c(beta_orig[x], beta_rep[x]),
-            se=c(se_orig[x], se_rep[x]), k_vec=root_vec))
+  PRP_MCMC_with_PI(beta=c(beta_orig[x], beta_rep[x]),
+            se=c(se_orig[x], se_rep[x]), k_vec=root_vec)$pval)
 
 data = cbind(RPP_filtered,"PRP_MCMC" = rpp_pval)
 
