@@ -1,7 +1,7 @@
 library(Rcpp)
 library(RcppArmadillo)
 library(RcppGSL)
-Rcpp::sourceCpp("../PRP_MCMC_with_PI.cpp")
+Rcpp::sourceCpp("PRP_MCMC_with_PI.cpp")
 
 t= seq(0.001,0.05,0.001)
 root_vec<-c(0)

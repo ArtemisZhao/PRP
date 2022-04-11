@@ -70,18 +70,18 @@ double run_MCMC(double hbo, double so, double hbr, double sr, vector<double> &k_
   }
   
   /*
-   for( int i=0; i< nreps;i++){
-   printf("%f %f\n",bbar_sample[i], k_sample[i]);
-   }
-   exit(0);
-   */
-  
+    for( int i=0; i< nreps;i++){
+      printf("%f %f\n",bbar_sample[i], k_sample[i]);
+    }
+  exit(0);
+  */
+    
   int start = int(nreps*burnin_rate);
   int count = 0;
   double pv1_sum = 0;
   double pv2_sum = 0;
   for (int i = start; i< nreps; i++){
-    double pv1 = gsl_cdf_gaussian_P(hbr/hbo - bbar_sample[i]/hbo, sqrt(pow(k_sample[i],2)*pow(bbar_sample[i],2)+sr*sr)/hbo);
+    double pv1 = gsl_cdf_gaussian_P(hbr - bbar_sample[i], sqrt(pow(k_sample[i],2)*pow(bbar_sample[i],2)+sr*sr));
     pv1_sum += pv1;
     pv2_sum += 1-pv1;
     count++;

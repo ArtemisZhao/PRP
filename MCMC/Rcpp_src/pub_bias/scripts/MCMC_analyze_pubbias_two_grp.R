@@ -2,7 +2,7 @@ library(Rcpp)
 library(RcppArmadillo)
 library(RcppGSL)
 library(PRP)
-Rcpp::sourceCpp("../PRP_MCMC_pubbias.cpp")
+Rcpp::sourceCpp("scripts/PRP_MCMC.cpp")
 
 t= seq(0.001,0.05,0.001)
 root_vec<-c(0)
@@ -30,13 +30,13 @@ N = dim(d)[1]
 pvec = sapply(1:N, function(x) PRP_MCMC(beta=c(V2[x], V4[x]), se=c(V3[x], V5[x]), k=root_vec))
 
 
-outfile = paste0("output/pubbias_2grp_pthresh_",round(p_thresh,2),"_pubbias_ts.prp.out")
+outfile = paste0("output/pubbias_2grp_pthresh_",round(p_thresh,2),".prp.out")
 outd = cbind(1:N, pvec)
 write(file=outfile, t(outd), ncol=2)
 
 
-pdf(file = paste0("plots/hist_pubbias_2grp_pthresh_",round(p_thresh,2),"_pubbias_ts.pdf"),width=6,height=5.5)
-hist(pvec,xlab="PRP_MCMC",col="grey")
+pdf(file = paste0("plots/hist_pubbias_2grp_pthresh_",round(p_thresh,2),".pdf"),width=6,height=5.5)
+hist(pvec,xlab="PRP_MCMC",col="grey",breaks=10)
 dev.off()
 
 # pdf(file = paste0("plots/comp_batch_2grp_",bb,".pdf"),width=6,height=6.5)
