@@ -77,7 +77,6 @@ prior_PRP_mcmc <- function (hbo, so, hbr, sr, nreps = 50000, burnin_rate = 0.01)
             bbar = bbar_p
             k = k_p
         }
-
         return(c(bbar,k))
     }
 

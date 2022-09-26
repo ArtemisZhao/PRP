@@ -10,9 +10,9 @@ if(length(args)>=1){
 }
 
 
-or<-c(2/3)
+beta = rnorm(1,0,0.5)
 
-samplesize<-c(150, 150)
+samplesize<-c(50, 50)
 
 
 wipi<-function(p){
@@ -26,28 +26,19 @@ rep=5000
 
 
 for (k in 1:rep){
-	curor = or
 	betalist<-c()
 	sdlist<-c()
 	for (j in 1:2){
 
 		cur_indnum<-samplesize[j]
-		beta_cur_est<-c()
-		sd_cur_est<-c()
-
+    #count=0
 		while (TRUE){
-			pcontrol<-runif(1,min=0.3,max=0.5)
-			oddscontrol = pcontrol/(1-pcontrol)
-			oddstreat= oddscontrol * curor
-			ptreat=oddstreat/(1+oddstreat)
 
-			control<-rbinom(cur_indnum,1,pcontrol)
-			treat<-rbinom(cur_indnum,1,ptreat)
-
-			datay<-c(control,treat)
-			datax<-c(rep(0,cur_indnum),rep(1,cur_indnum))
-			est_p<-summary(glm(datay~datax,
-					   family="binomial"))$coefficient[2,c(1,2,4)]
+		  x = rnorm(cur_indnum, 0, 1) 
+		  y = 1+ beta*x + rnorm(cur_indnum,0,1)
+		  
+		  est_p = summary(lm(y~x))$coefficient[2,c(1,2,4)]
+		  
 			pass = 1
 			if(j==1)
 				pass = wipi(est_p[3])
@@ -56,12 +47,12 @@ for (k in 1:rep){
 				sdlist<-c(sdlist,est_p[2])
 				break
 			}
+			#count=count+1
 		}
 	}
 	betafinal<-rbind(betafinal,betalist)
 	sdfinal<-rbind(sdfinal,sdlist)
 }
-
 
 
 

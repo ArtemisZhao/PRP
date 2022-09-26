@@ -22,10 +22,11 @@ rpp_pval<-sapply(1:nrow(RPP_filtered),function(x) prior_prp(beta=c(beta_orig[x],
 rpp_PI<-sapply(1:nrow(RPP_filtered),function(x) prior_prp(beta=c(beta_orig[x], beta_rep[x]),se=c(se_orig[x],  se_rep[x]),report_PI = T)$predictive_interval)
 
 rpp_PI<-t(rpp_PI)
-rpp_PI<-cbind(Study, rpp_PI,rpp_pval, beta_rep)
+#rpp_PI<-cbind(Study, rpp_PI,rpp_pval, beta_rep)
+rpp_PI<-cbind(Study, rpp_PI,rpp_pval, beta_orig,beta_rep)
 rpp_PI<-data.frame(rpp_PI)
-colnames(rpp_PI)<-c("Study","PIlow","PIhigh","pval","observed")
-
+#colnames(rpp_PI)<-c("Study","PIlow","PIhigh","pval","observed")
+colnames(rpp_PI)<-c("Study","PIlow","PIhigh","pval","orig","observed")
 rpp_PI[,1]<-as.factor(rpp_PI[,1])
 
 data_new<- rpp_PI[order(rpp_PI$pval,decreasing = T),]
@@ -37,12 +38,14 @@ data_new$significance = as.factor((data_new$pval>0.05)+0)
 
 pdf(file = paste0("output/rpp_PI.pdf"),width=6,height=8.5)
 ggplot(data_new)+
-  geom_pointrange(aes(x=Study2, y=(PIlow+PIhigh)/2, ymin=PIlow, ymax=PIhigh),color="darkblue",shape=3,fatten=2)+
+  #geom_pointrange(aes(x=Study2, y=(PIlow+PIhigh)/2, ymin=PIlow, ymax=PIhigh),color="darkblue",shape=3,fatten=2)+
+  geom_pointrange(aes(x=Study2, y=orig, ymin=PIlow, ymax=PIhigh),color="darkblue",shape=3,fatten=2)+
   geom_hline(yintercept = 0, linetype=2)+
   geom_point(aes(x=Study2,y=observed,color=significance))+
   labs( x = "study ID", y = "estimated effect") +
   scale_color_manual(" ",labels = c(expression(p[prior]< 0.05), expression(p[prior]>0.05)), values = c("red", "blue")) +
   coord_flip()+
+  ylim(-0.5,3.5)+
   theme_bw()
 dev.off()
 

@@ -29,15 +29,13 @@ N = dim(d)[1]
 
 pvec = sapply(1:N, function(x) PRP_MCMC(beta=c(V2[x], V4[x]), se=c(V3[x], V5[x]), k=root_vec))
 
-#pvec_ref = sapply(1:N,function(x) prior_prp(beta=c(V2[x], V4[x]), se=c(V3[x], V5[x]))$pval)
-
 outfile = paste0("output/batch_2grp_bb_sd_",bb,".prp.out")
 outd = cbind(1:N, pvec)
 write(file=outfile, t(outd), ncol=2)
 
-pdf(file = paste0("plots/hist_batch_2grp_",bb,".pdf"),width=6,height=5.5)
-hist(pvec,xlab="PRP_MCMC",col="grey")
-dev.off()
+#pdf(file = paste0("plots/hist_batch_2grp_",bb,".pdf"),width=6,height=5.5)
+#hist(pvec,xlab="PRP_MCMC",col="grey")
+#dev.off()
 
 # pdf(file = paste0("plots/comp_batch_2grp_",bb,".pdf"),width=6,height=6.5)
 # plot(pvec_ref,pvec,xlab="PRP_original",ylab="PRP_MCMC",col="blue",cex=0.1)
