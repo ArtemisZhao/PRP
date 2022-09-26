@@ -26,6 +26,7 @@ for (t_ind in t){
 rpp_pval_ref = sapply(1:nrow(RPP_filtered),function(x)
   prior_prp(beta=c(beta_orig[x], beta_rep[x]),
            se=c(se_orig[x], se_rep[x]))$pval)
+
 rpp_pval_ref_PI<-sapply(1:nrow(RPP_filtered),function(x) 
   prior_prp(beta=c(beta_orig[x], beta_rep[x]),
             se=c(se_orig[x],  se_rep[x]),report_PI = T)$predictive_interval)
@@ -45,35 +46,35 @@ rpp_pval_pubbias<-sapply(1:nrow(RPP_filtered),function(x)
   PRP_MCMC(beta=c(beta_orig[x], beta_rep[x]),
               se=c(se_orig[x], se_rep[x]), k_vec=root_vec))
 
-## default ts DC v.s. D
-rpp_ts=data.frame(priorPRP=rep(c("original","MCMC"),each=nrow(RPP_filtered)),rep_pval=c(rpp_pval_ref,rpp_pval))
-pdf(file = paste0("rpp_pval_default_ts.pdf"),width=6,height=5)
-ggplot(rpp_ts,aes(x=rep_pval))+
-  geom_histogram(aes(fill=priorPRP),color="white",bins=15,alpha=0.5,boundary=0,position = 'identity')+
-  scale_x_continuous(limits = c(0, 1))+
-  scale_fill_manual("Criterion",labels=c("Distinguishability","DC"),values=c("#69b3a2", "#404080"))+
-  xlab(expression(p["prior"]))+
-  theme_bw()
-dev.off()
+# ## default ts DC v.s. D
+# rpp_ts=data.frame(priorPRP=rep(c("original","MCMC"),each=nrow(RPP_filtered)),rep_pval=c(rpp_pval_ref,rpp_pval))
+# pdf(file = paste0("rpp_pval_default_ts.pdf"),width=6,height=5)
+# ggplot(rpp_ts,aes(x=rep_pval))+
+#   geom_histogram(aes(fill=priorPRP),color="white",bins=15,alpha=0.5,boundary=0,position = 'identity')+
+#   scale_x_continuous(limits = c(0, 1))+
+#   scale_fill_manual("Criterion",labels=c("Distinguishability","DC"),values=c("#69b3a2", "#404080"))+
+#   xlab(expression(p["prior"]))+
+#   theme_bw()
+# dev.off()
 
+# 
+# ## publication bias ts DC v.s. D
+# rpp_1=data.frame(priorPRP=rep(c("original","MCMC"),each=nrow(RPP_filtered)),rep_pval=c(rpp_pval_pubbias_ref,rpp_pval_pubbias))
+# 
+# pdf(file = paste0("rpp_pval_pubbias_ts.pdf"),width=6,height=5)
+# ggplot(rpp_1,aes(x=rep_pval))+
+#   geom_histogram(aes(fill=priorPRP),color="white",bins=20,alpha=0.5,boundary=0,position = 'identity')+
+#   scale_x_continuous(limits = c(0, 1))+
+#   scale_fill_manual("Criterion",labels=c("DC","Distinguishability"),values=c("#69b3a2", "#404080"))+
+#   xlab(expression(p["prior"]))+
+#   theme_bw()
+# dev.off()
 
-## publication bias ts DC v.s. D
-rpp_1=data.frame(priorPRP=rep(c("original","MCMC"),each=nrow(RPP_filtered)),rep_pval=c(rpp_pval_pubbias_ref,rpp_pval_pubbias))
-
-pdf(file = paste0("rpp_pval_pubbias_ts.pdf"),width=6,height=5)
-ggplot(rpp_1,aes(x=rep_pval))+
-  geom_histogram(aes(fill=priorPRP),color="white",bins=20,alpha=0.5,boundary=0,position = 'identity')+
-  scale_x_continuous(limits = c(0, 1))+
-  scale_fill_manual("Criterion",labels=c("DC","Distinguishability"),values=c("#69b3a2", "#404080"))+
-  xlab(expression(p["prior"]))+
-  theme_bw()
-dev.off()
-
-
-pdf(file = paste0("rpp_comp.pdf"),width=6,height=6.5)
-plot(rpp_pval_ref,rpp_pval,xlab=expression(P[prior]~-~DC),ylab=expression(P[prior]~-~Distinguishability),col="blue")
-abline(c(0,0),c(1,1))
-dev.off()
+# 
+# pdf(file = paste0("rpp_comp.pdf"),width=6,height=6.5)
+# plot(rpp_pval_ref,rpp_pval,xlab=expression(P[prior]~-~DC),ylab=expression(P[prior]~-~Distinguishability),col="blue")
+# abline(c(0,0),c(1,1))
+# dev.off()
 
 ## Distingsuihability default vs publication bias ts
 rpp_d=data.frame(test_statistics=rep(c("default","MCMC"),each=nrow(RPP_filtered)),rep_pval=c(rpp_pval,rpp_pval_pubbias))

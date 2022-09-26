@@ -23,7 +23,7 @@ ggplot(data=d,aes(x=rep_pval))+
 dev.off()
 
 
-############
+############ comparison between two criteria
 prp_dc_list = c()
 prp_d_list=c()
 for (bb in seq(0,2,0.5)){

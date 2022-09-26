@@ -1,8 +1,6 @@
+Rcpp::sourceCpp("./PRP_MCMC_with_PI.cpp")
 
-
-Rcpp::sourceCpp("~/Desktop/rep_new/PRP/MCMC/Rcpp_src/RPP_analyze/PRP_MCMC_with_PI.cpp")
-
-load("~/Desktop/rep_new/RPP_filtered_with_n.RData")
+load("RPP_filtered_with_n.RData")
 library(PRP)
 load(RPP_filtered)
 
@@ -68,7 +66,6 @@ data_dc<-data.frame(cbind("Study"=RPP_filtered[,1],"orig" =RPP_filtered[,2] ,
 data_dc$significance = as.factor((data_dc$pval>0.05)+0)
 
 
-#### 
 data_new <-cbind(rbind(data_jeff,data_dc,data_D),type=rep(c("Patil et al PI","DC PI","Distinguishability PI"),each=nrow(data_dc)))
 
 data_new$Study <-factor(data_new$Study, levels=data_D$Study)

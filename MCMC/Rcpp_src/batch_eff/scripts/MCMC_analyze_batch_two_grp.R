@@ -33,12 +33,4 @@ outfile = paste0("output/batch_2grp_bb_sd_",bb,".prp.out")
 outd = cbind(1:N, pvec)
 write(file=outfile, t(outd), ncol=2)
 
-#pdf(file = paste0("plots/hist_batch_2grp_",bb,".pdf"),width=6,height=5.5)
-#hist(pvec,xlab="PRP_MCMC",col="grey")
-#dev.off()
-
-# pdf(file = paste0("plots/comp_batch_2grp_",bb,".pdf"),width=6,height=6.5)
-# plot(pvec_ref,pvec,xlab="PRP_original",ylab="PRP_MCMC",col="blue",cex=0.1)
-# abline(c(0,0),c(1,1))
-# dev.off()
 
