@@ -16,13 +16,13 @@ ggplot(data=d,aes(x=rep_pval))+
   theme_bw()+
   theme(plot.title = element_text(size=12,hjust = 0.5))+
   xlab(expression(p["prior"]))+
-  ylim(0,3000)
+  ylim(0,4000)
 dev.off()
 
 
 ############
 sensitivity = c()
-for (bb in seq(0,2,0.5)){
+for (bb in c(seq(0,2,0.5),4)){
   d<-read.table(file=paste0("output/batch_2grp_bb_sd_",bb,".prp.out"))
   d = data.frame(d)
   names(d)<-c("V1", "rep_pval")
@@ -37,7 +37,7 @@ ggplot(data=data,aes(x=eta,y=sensitivity))+
   geom_point(color="#6186ad")+
   theme_bw()+
   xlab("batch effect magnitude")+
-  ylim(0,1)+
-  scale_x_continuous(breaks = seq(0, 2, by = 0.5))
+  ylim(0,1)
+  #scale_x_continuous(breaks = seq(0, 2, by = 0.5))
 dev.off()
 

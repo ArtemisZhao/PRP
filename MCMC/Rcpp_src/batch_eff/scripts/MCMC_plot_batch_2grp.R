@@ -19,14 +19,14 @@ ggplot(data=d,aes(x=rep_pval))+
   theme_bw()+
   theme(plot.title = element_text(size=12,hjust = 0.5))+
   xlab(expression(p["prior"]~Distinguishability~Criterion))+
-  ylim(0,3000)
+  ylim(0,6000)
 dev.off()
 
 
 ############ comparison between two criteria
 prp_dc_list = c()
 prp_d_list=c()
-for (bb in seq(0,2,0.5)){
+for (bb in seq(0,8,2)){
   dd<-read.table(file=paste0("~/Desktop/rep_new/PRP/MCMC/Rcpp_src/batch_eff/output/batch_2grp_bb_sd_",bb,".prp.out"))
   ddc<-read.table(file=paste0("~/Desktop/rep_new/PRP/PRP_paper/batch_eff/output/batch_2grp_bb_sd_",bb,".prp.out"))
   dd = data.frame(dd)
@@ -39,7 +39,7 @@ for (bb in seq(0,2,0.5)){
 
 
 
-data_plot2<-data.frame(eta=seq(0,2,0.5),prior_prp_dc=prp_dc_list,
+data_plot2<-data.frame(eta=seq(0,8,2),prior_prp_dc=prp_dc_list,
                        prior_prp_d=prp_d_list)
 data_plot2_long <- melt(data_plot2,id="eta")
 names(data_plot2_long)<-c("eta","criterion","sensitivity")
@@ -50,7 +50,7 @@ ggplot(data=data_plot2_long,aes(x=eta,y=sensitivity,color=criterion))+
   theme(legend.text.align = 0)+
   theme_bw()+
   xlab("batch effect magnitude")+
-  scale_color_discrete(labels=c("DC", "Distinguishability"))+
-  scale_x_continuous(breaks = seq(0, 2, by = 0.5))
+  scale_color_discrete(labels=c("DC", "Distinguishability"))
+  #scale_x_continuous(breaks = seq(0, 2, by = 0.5))
 dev.off()
 
